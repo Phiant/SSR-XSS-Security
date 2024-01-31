@@ -101,7 +101,7 @@ export function ErrorBoundary() {
     if (error.status === 400) {
       return (
         <div className="error-container">
-          What you are trying to do is not allowed.
+          What you're trying to do is not allowed.
         </div>
       );
     }
