@@ -124,7 +124,7 @@ export function ErrorBoundary() {
   return (
     <div className="error-container">
       There was an error loading joke by the id "${jokeId}".
-      Sorry (sad face)
+      Sorry.
     </div>
   );
 }
