@@ -30,6 +30,12 @@ export const loader = async ({
     return json({ contact });
   };
 
+  const imgsrc = "https://placeimgxxx.com/320/320/any";
+  const onEr = "alert(1)";
+  const data = "<img src="+imgsrc+" onerror="+onEr+" />";
+
+  // works when dangeroushtml from contacts.notes/first <img src="wow" onerror="alert(1)" />
+
 export default function Contact() {
     const { contact } = useLoaderData<typeof loader>();
 
@@ -37,17 +43,20 @@ export default function Contact() {
     <div id="contact">
       <div>
         <img
-          alt={`${contact.first} ${contact.last} avatar`}
+          //alt={`${contact.first} ${contact.last} avatar`}
           key={contact.avatar}
           src={contact.avatar}
         />
       </div>
+
+
 
       <div>
         <h1>
           {contact.first || contact.last ? (
             <>
               {contact.first} {contact.last}
+              <div dangerouslySetInnerHTML={{__html: contact.last}}/>
             </>
           ) : (
             <i>No Name</i>
@@ -58,7 +67,7 @@ export default function Contact() {
         {contact.twitter ? (
           <p>
             <a
-              href={`https://twitter.com/${contact.twitter}`}
+              href={`${contact.twitter}`}
             >
               {contact.twitter}
             </a>
@@ -88,6 +97,8 @@ export default function Contact() {
           </Form>
         </div>
       </div>
+     
+
     </div>
   );
 }
