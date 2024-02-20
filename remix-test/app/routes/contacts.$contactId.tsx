@@ -35,6 +35,7 @@ export const loader = async ({
   const data = "<img src="+imgsrc+" onerror="+onEr+" />";
 
   // works when dangeroushtml from contacts.notes/first <img src="wow" onerror="alert(1)" />
+  // <a href="javascript:alert(1)" >script</a>
 
 export default function Contact() {
     const { contact } = useLoaderData<typeof loader>();

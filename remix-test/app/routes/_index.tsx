@@ -11,11 +11,10 @@ export default function Index() {
       </p>
 
 
-    <form name="test">
-      <input type="text" id="fname" name="fname"/><br/>
-      <input type="text" id="lname" name="lname"/><br/>
-      <input type="submit" value="Submit"/>    
-    </form>  
+      <form method="get" action="/search">
+        <label>Search <input name="term" type="text" /></label>
+        <button type="submit">Search</button>
+      </form>
 
     <div dangerouslySetInnerHTML={{__html: data}}></div>
 
