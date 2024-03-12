@@ -1,3 +1,4 @@
+//source: https://sergiodxa.com/tutorials/upload-images-in-remix-apps
 import {
     json,
     unstable_createMemoryUploadHandler,
@@ -116,21 +117,27 @@ import {
     }, [objectUrl, url]);
   
     return (
+      
       <div>
+        <div>
         
-          <img 
-          alt={name}
-          src={url}
-          width={320}
-          height={240}
-          style={{
-            // Some styles, here we apply a blur filter when it's being uploaded
-            transition: "filter 300ms ease",
-            filter: url.startsWith("blob:") ? "blur(4px)" : "blur(0)",
-          }}/>
+          <img  
+              alt={name}
+              src={url}
+              width={320}
+              height={240}
+              style={{
+              // Some styles, here we apply a blur filter when it's being uploaded
+              transition: "filter 300ms ease",
+              filter: url.startsWith("blob:") ? "blur(4px)" : "blur(0)",
+              }}/>
+
+        </div>
+
+        The uploaded file name w/ dangerouslySetInnerHTML:
+        <div dangerouslySetInnerHTML={{__html: name}}>
         
-        
-        
+        </div>        
 
       </div>
 
@@ -138,3 +145,6 @@ import {
 
     );
   }
+
+
+  

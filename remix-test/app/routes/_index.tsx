@@ -6,7 +6,7 @@ import { json,redirect } from "@remix-run/node";
 
 import {  createEmptyComment, getComments, updateComment, CommentMutation } from "../dataComments";
 
-import { Form, useLoaderData, LiveReload } from "@remix-run/react";
+import { Form, useLoaderData, Link } from "@remix-run/react";
 
 
 export const loader = async ({
@@ -39,6 +39,9 @@ export default function Index() {
        
       </p>
 
+      <div id="imageUpLink">
+        <Link to="/imageUp">Image upload</Link>
+      </div>
       
       {/* <form method="get" action="/search"> 
         <label>Search <input name="term" type="text" /></label>
@@ -105,7 +108,7 @@ export default function Index() {
 
                 { comment.comment ? (
                   <>
-                    {comment.comment}
+                    <div dangerouslySetInnerHTML={{__html: comment.comment}}/>
                   </>
                 ) : (
                   <i>No Comments</i>
