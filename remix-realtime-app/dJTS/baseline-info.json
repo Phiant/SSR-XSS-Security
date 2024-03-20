@@ -1,0 +1,1 @@
+{"languages":{"javascript":{"displayName":"JavaScript/TypeScript","files":["tailwind.config.ts","app/amalgo-box.client.tsx","app/events.ts","app/root.tsx","app/data.tsx","app/routes/issues.$id.tsx","app/routes/issues.$id.update.tsx","app/routes/issues-events.tsx","app/routes/_index.tsx",".eslintrc.js","remix.config.js","remix.env.d.ts"],"linesOfCode":822,"name":"javascript"}}}
