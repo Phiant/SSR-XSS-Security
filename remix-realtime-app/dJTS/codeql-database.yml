@@ -1,0 +1,10 @@
+---
+sourceLocationPrefix: /home/vbuntu/SSR-XSS-Security/remix-realtime-app
+baselineLinesOfCode: 822
+unicodeNewlines: true
+columnKind: utf16
+primaryLanguage: javascript
+creationMetadata:
+  cliVersion: 2.16.4
+  creationTime: 2024-03-20T13:42:31.757548876Z
+finalised: true
