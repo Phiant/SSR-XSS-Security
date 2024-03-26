@@ -1,4 +1,0 @@
-import python
-import experimental.dataflow.TestUtil.DataflowQueryTest
-import experimental.semmle.python.security.DecompressionBomb
-import FromTaintTrackingConfig<BombsConfig>
