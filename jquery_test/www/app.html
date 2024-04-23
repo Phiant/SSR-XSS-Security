@@ -3,9 +3,32 @@
     <head>
         <title>jQuery+RequireJS Sample Page</title>
         <script data-main="js/app" src="js/lib/require.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ 
+        <script>
+            $( document ).ready( function() {
+                $( "form" ).submit( function(e) {
+                    e.preventDefault();
+                    var input = $( "#textInput" ).val();
+                    $( "#guests" ).html( input ) //with .html xss works, with .text xss does not work
+                });
+            });
+        </script> 
     </head>
     <body>
         <h1>jQuery+RequireJS Sample Page</h1>
         <p>Look at source or inspect the DOM to see how it works.</p>
+
+        <b>Input please</b> 
+     
+        <br><br> 
+         
+        <form>
+            <input type="text" id="textInput">
+            <input type="submit" value="Submit" id="submitButton">
+        </form>
+        
+        <span id="guests"></span>
     </body>
 </html>
