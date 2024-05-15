@@ -9,6 +9,7 @@ import {
   import type { NodeOnDiskFile, ActionFunctionArgs } from "@remix-run/node";
   import { useFetcher } from "@remix-run/react";
   import { useEffect, useState } from "react";
+  import DOMPurify from "dompurify";
   
   export async function action({ request }: ActionFunctionArgs) {
     let formData = await unstable_parseMultipartFormData(
@@ -116,6 +117,12 @@ import {
       if (objectUrl && !url.startsWith("blob:")) URL.revokeObjectURL(objectUrl);
     }, [objectUrl, url]);
   
+    const sanitizedName = DOMPurify.sanitize(name, {
+      ALLOWED_TAGS: ['b', 'i', 'em', 'strong'],
+      ALLOWED_ATTR: ['title'],
+    });
+
+
     return (
       
       <div>
@@ -135,7 +142,7 @@ import {
         </div>
 
         The uploaded file name w/ dangerouslySetInnerHTML:
-        <div dangerouslySetInnerHTML={{__html: name}}>
+        <div dangerouslySetInnerHTML={{__html: sanitizedName}}>
         
         </div>        
 
