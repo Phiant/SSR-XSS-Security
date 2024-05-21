@@ -1,0 +1,937 @@
+[2024-05-17 12:05:11] This is codeql database create ./codeql-db -s . --language=javascript
+[2024-05-17 12:05:11] Log file was started late.
+[2024-05-17 12:05:11] [PROGRESS] database create> Initializing database at /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db.
+[2024-05-17 12:05:11] Running plumbing command: codeql database init --language=javascript --extractor-options-verbosity=1 --qlconfig-file=/home/vbuntu/SSR-XSS-Security/remix-test/qlconfig.yml --source-root=/home/vbuntu/SSR-XSS-Security/remix-test --allow-missing-source-root=false --allow-already-existing -- /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db
+[2024-05-17 12:05:11] Calling plumbing command: codeql resolve languages --extractor-options-verbosity=1 --format=betterjson
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Scanning for [codeql-extractor.yml] from /home/vbuntu/codeql/.codeqlmanifest.json
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/properties/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/cpp/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/yaml/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/java/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/xml/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/javascript/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/csharp/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/html/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/csv/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/python/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/ruby/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/go/codeql-extractor.yml.
+[2024-05-17 12:05:11] [DETAILS] resolve languages> Parsing /home/vbuntu/codeql/swift/codeql-extractor.yml.
+[2024-05-17 12:05:11] Plumbing command codeql resolve languages completed:
+                      {
+                        "aliases" : {
+                          "c" : "cpp",
+                          "c++" : "cpp",
+                          "c-c++" : "cpp",
+                          "c-cpp" : "cpp",
+                          "c#" : "csharp",
+                          "java-kotlin" : "java",
+                          "kotlin" : "java",
+                          "javascript-typescript" : "javascript",
+                          "typescript" : "javascript"
+                        },
+                        "extractors" : {
+                          "properties" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/properties"
+                            }
+                          ],
+                          "cpp" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/cpp",
+                              "extractor_options" : { }
+                            }
+                          ],
+                          "yaml" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/yaml"
+                            }
+                          ],
+                          "java" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/java",
+                              "extractor_options" : {
+                                "exclude" : {
+                                  "title" : "A glob excluding files from analysis.",
+                                  "description" : "A glob indicating what files to exclude from the analysis.\n",
+                                  "type" : "string"
+                                },
+                                "add_prefer_source" : {
+                                  "title" : "Whether to always prefer source files over class files.",
+                                  "description" : "A value indicating whether source files should be preferred over class files. If set to 'true', the extraction adds '-Xprefer:source' to the javac command line. If set to 'false', the extraction uses the default javac behavior ('-Xprefer:newer'). The default is 'true'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "buildless" : {
+                                  "title" : "Whether to use buildless (standalone) extraction (experimental).",
+                                  "description" : "A value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "xml" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/xml"
+                            }
+                          ],
+                          "javascript" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/javascript",
+                              "extractor_options" : {
+                                "skip_types" : {
+                                  "title" : "Skip type extraction for TypeScript",
+                                  "description" : "Whether to skip the extraction of types in a TypeScript application",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "csharp" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/csharp",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'brotli' (the default, to write brotli-compressed TRAP), 'gzip', and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip|brotli)$"
+                                    }
+                                  }
+                                },
+                                "buildless" : {
+                                  "title" : "DEPRECATED - Whether to use buildless (standalone) extraction.",
+                                  "description" : "DEPRECATED: Use `--build-mode none` instead.\nA value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "cil" : {
+                                  "title" : "Whether to enable CIL extraction.",
+                                  "description" : "A value indicating, whether CIL extraction should be enabled. The default is 'true'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "html" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/html"
+                            }
+                          ],
+                          "csv" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/csv"
+                            }
+                          ],
+                          "python" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/python",
+                              "extractor_options" : {
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Python extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    }
+                                  }
+                                },
+                                "python_executable_name" : {
+                                  "title" : "Controls the name of the Python executable used by the Python extractor.",
+                                  "description" : "The Python extractor uses platform-dependent heuristics to determine the name of the Python executable to use. Specifying a value for this option overrides the name of the Python executable used by the extractor. Accepted values are py, python and python3. Use this setting with caution, the Python extractor requires Python 3 to run.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(py|python|python3)$"
+                                }
+                              }
+                            }
+                          ],
+                          "ruby" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/ruby",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (the default, to write gzip-compressed TRAP) and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip)$"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "go" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/go"
+                            }
+                          ],
+                          "swift" : [
+                            {
+                              "extractor_root" : "/home/vbuntu/codeql/swift"
+                            }
+                          ]
+                        }
+                      }
+[2024-05-17 12:05:11] [PROGRESS] database init> Calculating baseline information in /home/vbuntu/SSR-XSS-Security/remix-test
+[2024-05-17 12:05:11] [SPAMMY] database init> Ignoring the following directories when processing baseline information: .git, .hg, .svn.
+[2024-05-17 12:05:11] [DETAILS] database init> Running command in /home/vbuntu/SSR-XSS-Security/remix-test: /home/vbuntu/codeql/tools/linux64/scc --by-file --exclude-dir .git,.hg,.svn --format json --no-large --no-min .
+[2024-05-17 12:05:11] Using configure-baseline script /home/vbuntu/codeql/javascript/tools/configure-baseline.sh.
+[2024-05-17 12:05:11] [PROGRESS] database init> Running command in /home/vbuntu/SSR-XSS-Security/remix-test: [/home/vbuntu/codeql/javascript/tools/configure-baseline.sh]
+[2024-05-17 12:05:11] [SPAMMY] database init> Found 11 baseline files for javascript.
+[2024-05-17 12:05:11] [PROGRESS] database init> Calculated baseline information for languages: javascript (111ms).
+[2024-05-17 12:05:11] [PROGRESS] database init> Resolving extractor javascript.
+[2024-05-17 12:05:11] [DETAILS] database init> Found candidate extractor root for javascript: /home/vbuntu/codeql/javascript.
+[2024-05-17 12:05:11] [PROGRESS] database init> Successfully loaded extractor JavaScript/TypeScript (javascript) from /home/vbuntu/codeql/javascript.
+[2024-05-17 12:05:11] [PROGRESS] database init> Created skeleton CodeQL database at /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db. This in-progress database is ready to be populated by an extractor.
+[2024-05-17 12:05:11] Plumbing command codeql database init completed.
+[2024-05-17 12:05:11] [PROGRESS] database create> Running build command: []
+[2024-05-17 12:05:11] Running plumbing command: codeql database trace-command --working-dir=/home/vbuntu/SSR-XSS-Security/remix-test --index-traceless-dbs --no-db-cluster -- /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db
+[2024-05-17 12:05:11] Using autobuild script /home/vbuntu/codeql/javascript/tools/autobuild.sh.
+[2024-05-17 12:05:12] [PROGRESS] database trace-command> Running command in /home/vbuntu/SSR-XSS-Security/remix-test: [/home/vbuntu/codeql/javascript/tools/autobuild.sh]
+[2024-05-17 12:05:12] [build-stdout] Single-threaded extraction.
+[2024-05-17 12:05:20] [build-stdout] package.json: Main file not found
+[2024-05-17 12:05:20] [build-stdout] Found Node.js at: node
+[2024-05-17 12:05:20] [build-stdout] Found Node.js version: v21.6.2
+[2024-05-17 12:05:20] [build-stdout] Opening project /home/vbuntu/SSR-XSS-Security/remix-test/tsconfig.json
+[2024-05-17 12:05:20] [build-stdout] Memory for TypeScript process: 2000 MB, and 400 MB reserve
+[2024-05-17 12:05:24] [build-stdout] Done opening project /home/vbuntu/SSR-XSS-Security/remix-test/tsconfig.json (4165 ms)
+[2024-05-17 12:05:24] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/routes/_index.tsx
+[2024-05-17 12:05:25] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/routes/_index.tsx (1630 ms)
+[2024-05-17 12:05:25] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/routes/contacts.$contactId.destroy.tsx
+[2024-05-17 12:05:25] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/routes/contacts.$contactId.destroy.tsx (48 ms)
+[2024-05-17 12:05:25] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/routes/contacts.$contactId.tsx
+[2024-05-17 12:05:26] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/routes/contacts.$contactId.tsx (496 ms)
+[2024-05-17 12:05:26] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/routes/contacts.$contactId_.edit.tsx
+[2024-05-17 12:05:26] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/routes/contacts.$contactId_.edit.tsx (179 ms)
+[2024-05-17 12:05:26] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/routes/imageUp.tsx
+[2024-05-17 12:05:27] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/routes/imageUp.tsx (366 ms)
+[2024-05-17 12:05:27] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/data.ts
+[2024-05-17 12:05:27] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/data.ts (230 ms)
+[2024-05-17 12:05:27] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/dataComments.ts
+[2024-05-17 12:05:27] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/dataComments.ts (43 ms)
+[2024-05-17 12:05:27] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/root.tsx
+[2024-05-17 12:05:27] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/app/root.tsx (203 ms)
+[2024-05-17 12:05:27] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/remix.env.d.ts
+[2024-05-17 12:05:27] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/remix.env.d.ts (2 ms)
+[2024-05-17 12:05:27] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-AUYLHJJM.js
+[2024-05-17 12:05:27] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-AUYLHJJM.js (27 ms)
+[2024-05-17 12:05:27] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-BOXFZXVX.js
+[2024-05-17 12:05:27] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-BOXFZXVX.js (342 ms)
+[2024-05-17 12:05:27] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-CVZ7EPCZ.js
+[2024-05-17 12:05:28] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-CVZ7EPCZ.js (730 ms)
+[2024-05-17 12:05:28] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-E7F6U2NL.js
+[2024-05-17 12:05:28] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-E7F6U2NL.js (13 ms)
+[2024-05-17 12:05:28] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-G7CHZRZX.js
+[2024-05-17 12:05:28] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-G7CHZRZX.js (3 ms)
+[2024-05-17 12:05:28] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-GIAAE3CH.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-GIAAE3CH.js (5758 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-PNG5AS42.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-PNG5AS42.js (11 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-UWV35TSL.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-UWV35TSL.js (82 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-XU7DNSPJ.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-XU7DNSPJ.js (80 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-ZWGWGGVF.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/chunk-ZWGWGGVF.js (4 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/client-DFZR44C7.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/client-DFZR44C7.js (1 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/esm-JV7QOHQI.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/esm-JV7QOHQI.js (8 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/jsx-dev-runtime-RDH4Y5YT.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/jsx-dev-runtime-RDH4Y5YT.js (2 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/jsx-runtime-7NXSP56X.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/jsx-runtime-7NXSP56X.js (78 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/react-3OYUNTOK.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/react-3OYUNTOK.js (2 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/react-dom-BEFB7ICU.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/react-dom-BEFB7ICU.js (1 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/remix_hmr-K2JMKPMR.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/remix_hmr-K2JMKPMR.js (1 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/runtime-GC7QIU56.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/_shared/runtime-GC7QIU56.js (2 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/routes/_index-RQG4RVZS.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/routes/_index-RQG4RVZS.js (6 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/routes/contacts.$contactId-V5BH75NI.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/routes/contacts.$contactId-V5BH75NI.js (4 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/routes/contacts.$contactId.destroy-CD54FBRA.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/routes/contacts.$contactId.destroy-CD54FBRA.js (3 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/routes/contacts.$contactId_.edit-BSHV3E5K.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/routes/contacts.$contactId_.edit-BSHV3E5K.js (3 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/routes/imageUp-XP5AQC5G.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/routes/imageUp-XP5AQC5G.js (4 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/__remix_entry_dev-OGTXZIBY.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/__remix_entry_dev-OGTXZIBY.js (3 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/entry.client-Q6I2VKL5.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/entry.client-Q6I2VKL5.js (4 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/manifest-CF028CF7.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/manifest-CF028CF7.js (10 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/root-EMTF7OTA.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/public/build/root-EMTF7OTA.js (3 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/build/index.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/build/index.js (170 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/.eslintrc.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/.eslintrc.js (4 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/package.json
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/package.json (4 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/remix.config.js
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/remix.config.js (2 ms)
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/SSR-XSS-Security/remix-test/tsconfig.json
+[2024-05-17 12:05:34] [build-stdout] Done extracting /home/vbuntu/SSR-XSS-Security/remix-test/tsconfig.json (1 ms)
+[2024-05-17 12:05:34] [build-stderr] No externs trap cache found
+[2024-05-17 12:05:34] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/http.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/http.js (61 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/globals.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/globals.js (139 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/tty.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/tty.js (11 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/process.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/process.js (4 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/util.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/util.js (31 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/dgram.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/dgram.js (21 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/buffer.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/buffer.js (15 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/timers.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/timers.js (9 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/readline.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/readline.js (27 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/cluster.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/cluster.js (80 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/os.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/os.js (18 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/events.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/events.js (9 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/querystring.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/querystring.js (6 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/zlib.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/zlib.js (46 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/assert_legacy.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/assert_legacy.js (7 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/fs.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/fs.js (149 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/url.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/url.js (6 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/module.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/module.js (7 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/constants.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/constants.js (99 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/path.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/path.js (21 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/stream.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/stream.js (54 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/punycode.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/punycode.js (6 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/console.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/console.js (4 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/dns.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/dns.js (17 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/string_decoder.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/string_decoder.js (6 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/crypto.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/crypto.js (52 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/net.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/net.js (25 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/v8.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/v8.js (6 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/child_process.js
+[2024-05-17 12:05:35] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/child_process.js (46 ms)
+[2024-05-17 12:05:35] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/tls.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/tls.js (31 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/assert.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/assert.js (9 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/sys.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/sys.js (3 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/domain.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/domain.js (8 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/https.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/https.js (12 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/vm.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/vm.js (13 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/repl.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/nodejs/repl.js (7 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/lib/vows.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/lib/vows.js (22 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/lib/bdd.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/lib/bdd.js (8 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/lib/jquery-3.2.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/lib/jquery-3.2.js (147 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/lib/should.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/lib/should.js (18 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es6_collections.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es6_collections.js (19 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es2017.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es2017.js (24 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es3.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es3.js (119 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/proxy.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/proxy.js (2 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/intl.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/intl.js (16 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es6.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es6.js (119 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es2016.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es2016.js (8 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es5.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/es/es5.js (21 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/vm/jsshell.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/vm/jsshell.js (60 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/vm/rhino.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/vm/rhino.js (11 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/vm/v8.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/vm/v8.js (13 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/vm/spidermonkey.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/vm/spidermonkey.js (5 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_requestidlecallback.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_requestidlecallback.js (9 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_dom3.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_dom3.js (76 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/ie_dom.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/ie_dom.js (86 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/flash.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/flash.js (22 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/gecko_ext.js
+[2024-05-17 12:05:36] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/gecko_ext.js (3 ms)
+[2024-05-17 12:05:36] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_rtc.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_rtc.js (260 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_gamepad.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_gamepad.js (13 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_anim_timing.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_anim_timing.js (20 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webgl.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webgl.js (360 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/page_visibility.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/page_visibility.js (2 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_range.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_range.js (25 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/gecko_xml.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/gecko_xml.js (6 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_dom4.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_dom4.js (6 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_permissions.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_permissions.js (15 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webstorage.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webstorage.js (14 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/gecko_event.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/gecko_event.js (15 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_webcrypto.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_webcrypto.js (35 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/ie_event.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/ie_event.js (34 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/whatwg_encoding.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/whatwg_encoding.js (9 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_indexeddb.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_indexeddb.js (79 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webkit_css.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webkit_css.js (98 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/mediasource.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/mediasource.js (15 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/chrome.js
+[2024-05-17 12:05:37] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/chrome.js (53 ms)
+[2024-05-17 12:05:37] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/streamsapi.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/streamsapi.js (43 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_midi.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_midi.js (30 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/iphone.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/iphone.js (22 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_pointer_events.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_pointer_events.js (35 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_selectors.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_selectors.js (28 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_serviceworker.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_serviceworker.js (54 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/intl.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/intl.js (24 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webkit_notifications.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webkit_notifications.js (26 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webkit_usercontent.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webkit_usercontent.js (12 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_device_sensor_event.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_device_sensor_event.js (13 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_dom2.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_dom2.js (108 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_screen_orientation.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_screen_orientation.js (3 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/fetchapi.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/fetchapi.js (18 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webkit_dom.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webkit_dom.js (13 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_elementtraversal.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_elementtraversal.js (3 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_touch_event.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_touch_event.js (8 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/url.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/url.js (9 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/window.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/window.js (6 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_event.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_event.js (22 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/fileapi.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/fileapi.js (37 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_dom1.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_dom1.js (42 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webkit_event.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/webkit_event.js (2 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_encoding.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_encoding.js (3 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/html5.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/html5.js (177 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_css3d.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_css3d.js (9 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_xml.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_xml.js (20 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_batterystatus.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_batterystatus.js (5 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_navigation_timing.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_navigation_timing.js (13 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_event3.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_event3.js (5 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_css.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_css.js (81 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/gecko_dom.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/gecko_dom.js (30 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/ie_vml.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/ie_vml.js (2 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/ie_css.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/ie_css.js (14 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_geolocation.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/w3c_geolocation.js (5 ms)
+[2024-05-17 12:05:38] [build-stdout] Extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/gecko_css.js
+[2024-05-17 12:05:38] [build-stdout] Done extracting /home/vbuntu/codeql/javascript/tools/data/externs/web/gecko_css.js (10 ms)
+[2024-05-17 12:05:39] Plumbing command codeql database trace-command completed.
+[2024-05-17 12:05:39] [PROGRESS] database create> Finalizing database at /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db.
+[2024-05-17 12:05:39] Running plumbing command: codeql database finalize --mode=trim --no-db-cluster -- /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db
+[2024-05-17 12:05:39] [PROGRESS] database finalize> Running TRAP import for CodeQL database at /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db...
+[2024-05-17 12:05:39] Running plumbing command: codeql dataset import --dbscheme=/home/vbuntu/codeql/javascript/semmlecode.javascript.dbscheme -- /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db/db-javascript /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db/trap/javascript
+[2024-05-17 12:05:39] Clearing disk cache since the version file /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db/db-javascript/default/cache/version does not exist
+[2024-05-17 12:05:39] Tuple pool not found. Clearing relations with cached strings
+[2024-05-17 12:05:39] Trimming disk cache at /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db/db-javascript/default/cache in mode clear.
+[2024-05-17 12:05:39] Sequence stamp origin is -6183978353445149575
+[2024-05-17 12:05:39] Pausing evaluation to hard-clear memory at sequence stamp o+0
+[2024-05-17 12:05:39] Unpausing evaluation
+[2024-05-17 12:05:39] Pausing evaluation to quickly trim disk at sequence stamp o+1
+[2024-05-17 12:05:39] Unpausing evaluation
+[2024-05-17 12:05:39] Pausing evaluation to zealously trim disk at sequence stamp o+2
+[2024-05-17 12:05:39] Unpausing evaluation
+[2024-05-17 12:05:39] Trimming completed (35ms): Purged everything.
+[2024-05-17 12:05:39] Scanning for files in /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db/trap/javascript
+[2024-05-17 12:05:39] Found 153 TRAP files (18.78 MiB)
+[2024-05-17 12:05:39] [PROGRESS] dataset import> Importing TRAP files
+[2024-05-17 12:05:40] Importing .eslintrc.js.trap.gz (1 of 153)
+[2024-05-17 12:05:40] Importing data.ts.trap.gz (2 of 153)
+[2024-05-17 12:05:40] Importing dataComments.ts.trap.gz (3 of 153)
+[2024-05-17 12:05:40] Importing root.tsx.trap.gz (4 of 153)
+[2024-05-17 12:05:40] Importing _index.tsx.trap.gz (5 of 153)
+[2024-05-17 12:05:40] Importing contacts.$contactId.destroy.tsx.trap.gz (6 of 153)
+[2024-05-17 12:05:40] Importing contacts.$contactId.tsx.trap.gz (7 of 153)
+[2024-05-17 12:05:40] Importing contacts.$contactId_.edit.tsx.trap.gz (8 of 153)
+[2024-05-17 12:05:40] Importing imageUp.tsx.trap.gz (9 of 153)
+[2024-05-17 12:05:40] Importing index.js.trap.gz (10 of 153)
+[2024-05-17 12:05:40] Importing package.json.trap.gz (11 of 153)
+[2024-05-17 12:05:40] Importing __remix_entry_dev-OGTXZIBY.js.trap.gz (12 of 153)
+[2024-05-17 12:05:40] Importing chunk-AUYLHJJM.js.trap.gz (13 of 153)
+[2024-05-17 12:05:40] Importing chunk-BOXFZXVX.js.trap.gz (14 of 153)
+[2024-05-17 12:05:40] Importing chunk-CVZ7EPCZ.js.trap.gz (15 of 153)
+[2024-05-17 12:05:40] Importing chunk-E7F6U2NL.js.trap.gz (16 of 153)
+[2024-05-17 12:05:40] Importing chunk-G7CHZRZX.js.trap.gz (17 of 153)
+[2024-05-17 12:05:40] Importing chunk-GIAAE3CH.js.trap.gz (18 of 153)
+[2024-05-17 12:05:42] Importing chunk-PNG5AS42.js.trap.gz (19 of 153)
+[2024-05-17 12:05:42] Importing chunk-UWV35TSL.js.trap.gz (20 of 153)
+[2024-05-17 12:05:42] Importing chunk-XU7DNSPJ.js.trap.gz (21 of 153)
+[2024-05-17 12:05:43] Importing chunk-ZWGWGGVF.js.trap.gz (22 of 153)
+[2024-05-17 12:05:43] Importing client-DFZR44C7.js.trap.gz (23 of 153)
+[2024-05-17 12:05:43] Importing esm-JV7QOHQI.js.trap.gz (24 of 153)
+[2024-05-17 12:05:43] Importing jsx-dev-runtime-RDH4Y5YT.js.trap.gz (25 of 153)
+[2024-05-17 12:05:43] Importing jsx-runtime-7NXSP56X.js.trap.gz (26 of 153)
+[2024-05-17 12:05:43] Importing react-3OYUNTOK.js.trap.gz (27 of 153)
+[2024-05-17 12:05:43] Importing react-dom-BEFB7ICU.js.trap.gz (28 of 153)
+[2024-05-17 12:05:43] Importing remix_hmr-K2JMKPMR.js.trap.gz (29 of 153)
+[2024-05-17 12:05:43] Importing runtime-GC7QIU56.js.trap.gz (30 of 153)
+[2024-05-17 12:05:43] Importing entry.client-Q6I2VKL5.js.trap.gz (31 of 153)
+[2024-05-17 12:05:43] Importing manifest-CF028CF7.js.trap.gz (32 of 153)
+[2024-05-17 12:05:43] Importing root-EMTF7OTA.js.trap.gz (33 of 153)
+[2024-05-17 12:05:43] Importing _index-RQG4RVZS.js.trap.gz (34 of 153)
+[2024-05-17 12:05:43] Importing contacts.$contactId-V5BH75NI.js.trap.gz (35 of 153)
+[2024-05-17 12:05:43] Importing contacts.$contactId.destroy-CD54FBRA.js.trap.gz (36 of 153)
+[2024-05-17 12:05:43] Importing contacts.$contactId_.edit-BSHV3E5K.js.trap.gz (37 of 153)
+[2024-05-17 12:05:43] Importing imageUp-XP5AQC5G.js.trap.gz (38 of 153)
+[2024-05-17 12:05:43] Importing remix.config.js.trap.gz (39 of 153)
+[2024-05-17 12:05:43] Importing remix.env.d.ts.trap.gz (40 of 153)
+[2024-05-17 12:05:43] Importing tsconfig.json.codeql-typescript-typetable.trap.gz (41 of 153)
+[2024-05-17 12:05:43] Importing tsconfig.json.trap.gz (42 of 153)
+[2024-05-17 12:05:43] Importing es2016.js.trap.gz (43 of 153)
+[2024-05-17 12:05:43] Importing es2017.js.trap.gz (44 of 153)
+[2024-05-17 12:05:43] Importing es3.js.trap.gz (45 of 153)
+[2024-05-17 12:05:43] Importing es5.js.trap.gz (46 of 153)
+[2024-05-17 12:05:43] Importing es6.js.trap.gz (47 of 153)
+[2024-05-17 12:05:43] Importing es6_collections.js.trap.gz (48 of 153)
+[2024-05-17 12:05:43] Importing intl.js.trap.gz (49 of 153)
+[2024-05-17 12:05:43] Importing proxy.js.trap.gz (50 of 153)
+[2024-05-17 12:05:43] Importing bdd.js.trap.gz (51 of 153)
+[2024-05-17 12:05:43] Importing jquery-3.2.js.trap.gz (52 of 153)
+[2024-05-17 12:05:43] Importing should.js.trap.gz (53 of 153)
+[2024-05-17 12:05:43] Importing vows.js.trap.gz (54 of 153)
+[2024-05-17 12:05:43] Importing assert.js.trap.gz (55 of 153)
+[2024-05-17 12:05:43] Importing assert_legacy.js.trap.gz (56 of 153)
+[2024-05-17 12:05:43] Importing buffer.js.trap.gz (57 of 153)
+[2024-05-17 12:05:43] Importing child_process.js.trap.gz (58 of 153)
+[2024-05-17 12:05:43] Importing cluster.js.trap.gz (59 of 153)
+[2024-05-17 12:05:43] Importing console.js.trap.gz (60 of 153)
+[2024-05-17 12:05:43] Importing constants.js.trap.gz (61 of 153)
+[2024-05-17 12:05:43] Importing crypto.js.trap.gz (62 of 153)
+[2024-05-17 12:05:43] Importing dgram.js.trap.gz (63 of 153)
+[2024-05-17 12:05:43] Importing dns.js.trap.gz (64 of 153)
+[2024-05-17 12:05:43] Importing domain.js.trap.gz (65 of 153)
+[2024-05-17 12:05:43] Importing events.js.trap.gz (66 of 153)
+[2024-05-17 12:05:43] Importing fs.js.trap.gz (67 of 153)
+[2024-05-17 12:05:43] Importing globals.js.trap.gz (68 of 153)
+[2024-05-17 12:05:44] Importing http.js.trap.gz (69 of 153)
+[2024-05-17 12:05:44] Importing https.js.trap.gz (70 of 153)
+[2024-05-17 12:05:44] Importing module.js.trap.gz (71 of 153)
+[2024-05-17 12:05:44] Importing net.js.trap.gz (72 of 153)
+[2024-05-17 12:05:44] Importing os.js.trap.gz (73 of 153)
+[2024-05-17 12:05:44] Importing path.js.trap.gz (74 of 153)
+[2024-05-17 12:05:44] Importing process.js.trap.gz (75 of 153)
+[2024-05-17 12:05:44] Importing punycode.js.trap.gz (76 of 153)
+[2024-05-17 12:05:44] Importing querystring.js.trap.gz (77 of 153)
+[2024-05-17 12:05:44] Importing readline.js.trap.gz (78 of 153)
+[2024-05-17 12:05:44] Importing repl.js.trap.gz (79 of 153)
+[2024-05-17 12:05:44] Importing stream.js.trap.gz (80 of 153)
+[2024-05-17 12:05:44] Importing string_decoder.js.trap.gz (81 of 153)
+[2024-05-17 12:05:44] Importing sys.js.trap.gz (82 of 153)
+[2024-05-17 12:05:44] Importing timers.js.trap.gz (83 of 153)
+[2024-05-17 12:05:44] Importing tls.js.trap.gz (84 of 153)
+[2024-05-17 12:05:44] Importing tty.js.trap.gz (85 of 153)
+[2024-05-17 12:05:44] Importing url.js.trap.gz (86 of 153)
+[2024-05-17 12:05:44] Importing util.js.trap.gz (87 of 153)
+[2024-05-17 12:05:44] Importing v8.js.trap.gz (88 of 153)
+[2024-05-17 12:05:44] Importing vm.js.trap.gz (89 of 153)
+[2024-05-17 12:05:44] Importing zlib.js.trap.gz (90 of 153)
+[2024-05-17 12:05:44] Importing jsshell.js.trap.gz (91 of 153)
+[2024-05-17 12:05:44] Importing rhino.js.trap.gz (92 of 153)
+[2024-05-17 12:05:44] Importing spidermonkey.js.trap.gz (93 of 153)
+[2024-05-17 12:05:44] Importing v8.js.trap.gz (94 of 153)
+[2024-05-17 12:05:44] Importing chrome.js.trap.gz (95 of 153)
+[2024-05-17 12:05:44] Importing fetchapi.js.trap.gz (96 of 153)
+[2024-05-17 12:05:44] Importing fileapi.js.trap.gz (97 of 153)
+[2024-05-17 12:05:44] Importing flash.js.trap.gz (98 of 153)
+[2024-05-17 12:05:44] Importing gecko_css.js.trap.gz (99 of 153)
+[2024-05-17 12:05:44] Importing gecko_dom.js.trap.gz (100 of 153)
+[2024-05-17 12:05:44] Importing gecko_event.js.trap.gz (101 of 153)
+[2024-05-17 12:05:44] Importing gecko_ext.js.trap.gz (102 of 153)
+[2024-05-17 12:05:44] Importing gecko_xml.js.trap.gz (103 of 153)
+[2024-05-17 12:05:44] Importing html5.js.trap.gz (104 of 153)
+[2024-05-17 12:05:44] Importing ie_css.js.trap.gz (105 of 153)
+[2024-05-17 12:05:44] Importing ie_dom.js.trap.gz (106 of 153)
+[2024-05-17 12:05:44] Importing ie_event.js.trap.gz (107 of 153)
+[2024-05-17 12:05:44] Importing ie_vml.js.trap.gz (108 of 153)
+[2024-05-17 12:05:44] Importing intl.js.trap.gz (109 of 153)
+[2024-05-17 12:05:44] Importing iphone.js.trap.gz (110 of 153)
+[2024-05-17 12:05:44] Importing mediasource.js.trap.gz (111 of 153)
+[2024-05-17 12:05:44] Importing page_visibility.js.trap.gz (112 of 153)
+[2024-05-17 12:05:44] Importing streamsapi.js.trap.gz (113 of 153)
+[2024-05-17 12:05:44] Importing url.js.trap.gz (114 of 153)
+[2024-05-17 12:05:44] Importing w3c_anim_timing.js.trap.gz (115 of 153)
+[2024-05-17 12:05:44] Importing w3c_batterystatus.js.trap.gz (116 of 153)
+[2024-05-17 12:05:44] Importing w3c_css.js.trap.gz (117 of 153)
+[2024-05-17 12:05:45] Importing w3c_css3d.js.trap.gz (118 of 153)
+[2024-05-17 12:05:45] Importing w3c_device_sensor_event.js.trap.gz (119 of 153)
+[2024-05-17 12:05:45] Importing w3c_dom1.js.trap.gz (120 of 153)
+[2024-05-17 12:05:45] Importing w3c_dom2.js.trap.gz (121 of 153)
+[2024-05-17 12:05:46] Importing w3c_dom3.js.trap.gz (122 of 153)
+[2024-05-17 12:05:46] Importing w3c_dom4.js.trap.gz (123 of 153)
+[2024-05-17 12:05:46] Importing w3c_elementtraversal.js.trap.gz (124 of 153)
+[2024-05-17 12:05:46] Importing w3c_encoding.js.trap.gz (125 of 153)
+[2024-05-17 12:05:46] Importing w3c_event.js.trap.gz (126 of 153)
+[2024-05-17 12:05:46] Importing w3c_event3.js.trap.gz (127 of 153)
+[2024-05-17 12:05:46] Importing w3c_gamepad.js.trap.gz (128 of 153)
+[2024-05-17 12:05:46] Importing w3c_geolocation.js.trap.gz (129 of 153)
+[2024-05-17 12:05:46] Importing w3c_indexeddb.js.trap.gz (130 of 153)
+[2024-05-17 12:05:46] Importing w3c_midi.js.trap.gz (131 of 153)
+[2024-05-17 12:05:46] Importing w3c_navigation_timing.js.trap.gz (132 of 153)
+[2024-05-17 12:05:46] Importing w3c_permissions.js.trap.gz (133 of 153)
+[2024-05-17 12:05:46] Importing w3c_pointer_events.js.trap.gz (134 of 153)
+[2024-05-17 12:05:46] Importing w3c_range.js.trap.gz (135 of 153)
+[2024-05-17 12:05:46] Importing w3c_requestidlecallback.js.trap.gz (136 of 153)
+[2024-05-17 12:05:46] Importing w3c_rtc.js.trap.gz (137 of 153)
+[2024-05-17 12:05:46] Importing w3c_screen_orientation.js.trap.gz (138 of 153)
+[2024-05-17 12:05:46] Importing w3c_selectors.js.trap.gz (139 of 153)
+[2024-05-17 12:05:46] Importing w3c_serviceworker.js.trap.gz (140 of 153)
+[2024-05-17 12:05:46] Importing w3c_touch_event.js.trap.gz (141 of 153)
+[2024-05-17 12:05:46] Importing w3c_webcrypto.js.trap.gz (142 of 153)
+[2024-05-17 12:05:46] Importing w3c_xml.js.trap.gz (143 of 153)
+[2024-05-17 12:05:46] Importing webgl.js.trap.gz (144 of 153)
+[2024-05-17 12:05:47] Importing webkit_css.js.trap.gz (145 of 153)
+[2024-05-17 12:05:47] Importing webkit_dom.js.trap.gz (146 of 153)
+[2024-05-17 12:05:47] Importing webkit_event.js.trap.gz (147 of 153)
+[2024-05-17 12:05:47] Importing webkit_notifications.js.trap.gz (148 of 153)
+[2024-05-17 12:05:47] Importing webkit_usercontent.js.trap.gz (149 of 153)
+[2024-05-17 12:05:47] Importing webstorage.js.trap.gz (150 of 153)
+[2024-05-17 12:05:47] Importing whatwg_encoding.js.trap.gz (151 of 153)
+[2024-05-17 12:05:47] Importing window.js.trap.gz (152 of 153)
+[2024-05-17 12:05:47] Importing sourceLocationPrefix.trap.gz (153 of 153)
+[2024-05-17 12:05:47] [PROGRESS] dataset import> Merging relations
+[2024-05-17 12:05:47] Merging 1 fragment for 'files'.
+[2024-05-17 12:05:47] Merged 1208 bytes (1.18 KiB) for 'files'.
+[2024-05-17 12:05:47] Merging 1 fragment for 'folders'.
+[2024-05-17 12:05:47] Merged 176 bytes for 'folders'.
+[2024-05-17 12:05:47] Merging 1 fragment for 'containerparent'.
+[2024-05-17 12:05:47] Merged 1376 bytes (1.34 KiB) for 'containerparent'.
+[2024-05-17 12:05:47] Merging 5 fragments for 'locations_default'.
+[2024-05-17 12:05:47] Merged 9718680 bytes (9.27 MiB) for 'locations_default'.
+[2024-05-17 12:05:47] Merging 6 fragments for 'hasLocation'.
+[2024-05-17 12:05:47] Merged 4093648 bytes (3.90 MiB) for 'hasLocation'.
+[2024-05-17 12:05:47] Merging 1 fragment for 'extraction_data'.
+[2024-05-17 12:05:47] Merged 2416 bytes (2.36 KiB) for 'extraction_data'.
+[2024-05-17 12:05:47] Merging 1 fragment for 'scopes'.
+[2024-05-17 12:05:47] Merged 46904 bytes (45.80 KiB) for 'scopes'.
+[2024-05-17 12:05:47] Merging 1 fragment for 'comments'.
+[2024-05-17 12:05:47] Merged 224900 bytes (219.63 KiB) for 'comments'.
+[2024-05-17 12:05:47] Merging 1 fragment for 'indentation'.
+[2024-05-17 12:05:47] Merged 989968 bytes (966.77 KiB) for 'indentation'.
+[2024-05-17 12:05:47] Merging 1 fragment for 'numlines'.
+[2024-05-17 12:05:47] Merged 4800 bytes (4.69 KiB) for 'numlines'.
+[2024-05-17 12:05:47] Merging 3 fragments for 'tokeninfo'.
+[2024-05-17 12:05:48] Merged 4748140 bytes (4.53 MiB) for 'tokeninfo'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'next_token'.
+[2024-05-17 12:05:48] Merged 89960 bytes (87.85 KiB) for 'next_token'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'jsdoc'.
+[2024-05-17 12:05:48] Merged 110208 bytes (107.62 KiB) for 'jsdoc'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'jsdoc_tags'.
+[2024-05-17 12:05:48] Merged 362940 bytes (354.43 KiB) for 'jsdoc_tags'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'jsdoc_errors'.
+[2024-05-17 12:05:48] Merged 3232 bytes (3.16 KiB) for 'jsdoc_errors'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'toplevels'.
+[2024-05-17 12:05:48] Merged 1192 bytes (1.16 KiB) for 'toplevels'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'variables'.
+[2024-05-17 12:05:48] Merged 237192 bytes (231.63 KiB) for 'variables'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'scopenodes'.
+[2024-05-17 12:05:48] Merged 46896 bytes (45.80 KiB) for 'scopenodes'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'scopenesting'.
+[2024-05-17 12:05:48] Merged 46896 bytes (45.80 KiB) for 'scopenesting'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_module'.
+[2024-05-17 12:05:48] Merged 264 bytes for 'is_module'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'stmts'.
+[2024-05-17 12:05:48] Merged 741560 bytes (724.18 KiB) for 'stmts'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'stmt_containers'.
+[2024-05-17 12:05:48] Merged 296624 bytes (289.67 KiB) for 'stmt_containers'.
+[2024-05-17 12:05:48] Merging 2 fragments for 'exprs'.
+[2024-05-17 12:05:48] Merged 2852360 bytes (2.72 MiB) for 'exprs'.
+[2024-05-17 12:05:48] Merging 2 fragments for 'enclosing_stmt'.
+[2024-05-17 12:05:48] Merged 1057584 bytes (1.01 MiB) for 'enclosing_stmt'.
+[2024-05-17 12:05:48] Merging 2 fragments for 'expr_containers'.
+[2024-05-17 12:05:48] Merged 1141984 bytes (1.09 MiB) for 'expr_containers'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'literals'.
+[2024-05-17 12:05:48] Merged 1049856 bytes (1.00 MiB) for 'literals'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'bind'.
+[2024-05-17 12:05:48] Merged 285152 bytes (278.47 KiB) for 'bind'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'properties'.
+[2024-05-17 12:05:48] Merged 59400 bytes (58.01 KiB) for 'properties'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'regexpterm'.
+[2024-05-17 12:05:48] Merged 177520 bytes (173.36 KiB) for 'regexpterm'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'regexp_const_value'.
+[2024-05-17 12:05:48] Merged 44984 bytes (43.93 KiB) for 'regexp_const_value'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'array_size'.
+[2024-05-17 12:05:48] Merged 2216 bytes (2.16 KiB) for 'array_size'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'entry_cfg_node'.
+[2024-05-17 12:05:48] Merged 46104 bytes (45.02 KiB) for 'entry_cfg_node'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'exit_cfg_node'.
+[2024-05-17 12:05:48] Merged 46104 bytes (45.02 KiB) for 'exit_cfg_node'.
+[2024-05-17 12:05:48] Merging 3 fragments for 'successor'.
+[2024-05-17 12:05:48] Merged 1618864 bytes (1.54 MiB) for 'successor'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_nodejs'.
+[2024-05-17 12:05:48] Merged 156 bytes for 'is_nodejs'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'filetype'.
+[2024-05-17 12:05:48] Merged 1208 bytes (1.18 KiB) for 'filetype'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'extraction_time'.
+[2024-05-17 12:05:48] Merged 54360 bytes (53.09 KiB) for 'extraction_time'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_es2015_module'.
+[2024-05-17 12:05:48] Merged 108 bytes for 'is_es2015_module'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'local_type_names'.
+[2024-05-17 12:05:48] Merged 1872 bytes (1.83 KiB) for 'local_type_names'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'local_namespace_names'.
+[2024-05-17 12:05:48] Merged 1824 bytes (1.78 KiB) for 'local_namespace_names'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'ast_node_type'.
+[2024-05-17 12:05:48] Merged 16200 bytes (15.82 KiB) for 'ast_node_type'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'decl'.
+[2024-05-17 12:05:48] Merged 112416 bytes (109.78 KiB) for 'decl'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'typedecl'.
+[2024-05-17 12:05:48] Merged 1248 bytes (1.22 KiB) for 'typedecl'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'namespacedecl'.
+[2024-05-17 12:05:48] Merged 1216 bytes (1.19 KiB) for 'namespacedecl'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'ast_node_symbol'.
+[2024-05-17 12:05:48] Merged 1848 bytes (1.80 KiB) for 'ast_node_symbol'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'typeexprs'.
+[2024-05-17 12:05:48] Merged 2600 bytes (2.54 KiB) for 'typeexprs'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_abstract_member'.
+[2024-05-17 12:05:48] Merged 72 bytes for 'is_abstract_member'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_optional_member'.
+[2024-05-17 12:05:48] Merged 44 bytes for 'is_optional_member'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'typebind'.
+[2024-05-17 12:05:48] Merged 672 bytes for 'typebind'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_arguments_object'.
+[2024-05-17 12:05:48] Merged 22048 bytes (21.53 KiB) for 'is_arguments_object'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_async'.
+[2024-05-17 12:05:48] Merged 216 bytes for 'is_async'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'declared_function_signature'.
+[2024-05-17 12:05:48] Merged 496 bytes for 'declared_function_signature'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'invoke_expr_signature'.
+[2024-05-17 12:05:48] Merged 1096 bytes (1.07 KiB) for 'invoke_expr_signature'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'invoke_expr_overload_index'.
+[2024-05-17 12:05:48] Merged 1032 bytes (1.01 KiB) for 'invoke_expr_overload_index'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_method'.
+[2024-05-17 12:05:48] Merged 192 bytes for 'is_method'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_optional_parameter_declaration'.
+[2024-05-17 12:05:48] Merged 8 bytes for 'is_optional_parameter_declaration'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'guard_node'.
+[2024-05-17 12:05:48] Merged 107916 bytes (105.39 KiB) for 'guard_node'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_greedy'.
+[2024-05-17 12:05:48] Merged 324 bytes for 'is_greedy'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'has_type_keyword'.
+[2024-05-17 12:05:48] Merged 36 bytes for 'has_type_keyword'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_capture'.
+[2024-05-17 12:05:48] Merged 1784 bytes (1.74 KiB) for 'is_capture'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'isOptionalChaining'.
+[2024-05-17 12:05:48] Merged 24 bytes for 'isOptionalChaining'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'json'.
+[2024-05-17 12:05:48] Merged 1200 bytes (1.17 KiB) for 'json'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'json_locations'.
+[2024-05-17 12:05:48] Merged 480 bytes for 'json_locations'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'json_literals'.
+[2024-05-17 12:05:48] Merged 588 bytes for 'json_literals'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'json_properties'.
+[2024-05-17 12:05:48] Merged 612 bytes for 'json_properties'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'jsdoc_type_exprs'.
+[2024-05-17 12:05:48] Merged 464520 bytes (453.63 KiB) for 'jsdoc_type_exprs'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'jsdoc_tag_descriptions'.
+[2024-05-17 12:05:48] Merged 27544 bytes (26.90 KiB) for 'jsdoc_tag_descriptions'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'jsdoc_tag_names'.
+[2024-05-17 12:05:48] Merged 39448 bytes (38.52 KiB) for 'jsdoc_tag_names'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'jsdoc_prefix_qualifier'.
+[2024-05-17 12:05:48] Merged 7216 bytes (7.05 KiB) for 'jsdoc_prefix_qualifier'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'jump_targets'.
+[2024-05-17 12:05:48] Merged 2320 bytes (2.27 KiB) for 'jump_targets'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'js_parse_errors'.
+[2024-05-17 12:05:48] Merged 96 bytes for 'js_parse_errors'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'char_class_escape'.
+[2024-05-17 12:05:48] Merged 16 bytes for 'char_class_escape'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_inverted'.
+[2024-05-17 12:05:48] Merged 4 bytes for 'is_inverted'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'namespacebind'.
+[2024-05-17 12:05:48] Merged 424 bytes for 'namespacebind'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'types'.
+[2024-05-17 12:05:48] Merged 9984 bytes (9.75 KiB) for 'types'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'type_literal_value'.
+[2024-05-17 12:05:48] Merged 1368 bytes (1.34 KiB) for 'type_literal_value'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'type_symbol'.
+[2024-05-17 12:05:48] Merged 1856 bytes (1.81 KiB) for 'type_symbol'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'type_child'.
+[2024-05-17 12:05:48] Merged 6864 bytes (6.70 KiB) for 'type_child'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'tuple_type_min_length'.
+[2024-05-17 12:05:48] Merged 40 bytes for 'tuple_type_min_length'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'type_property'.
+[2024-05-17 12:05:48] Merged 12 bytes for 'type_property'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'type_alias'.
+[2024-05-17 12:05:48] Merged 352 bytes for 'type_alias'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'symbols'.
+[2024-05-17 12:05:48] Merged 10548 bytes (10.30 KiB) for 'symbols'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'symbol_parent'.
+[2024-05-17 12:05:48] Merged 3368 bytes (3.29 KiB) for 'symbol_parent'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'symbol_module'.
+[2024-05-17 12:05:48] Merged 2096 bytes (2.05 KiB) for 'symbol_module'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'symbol_global'.
+[2024-05-17 12:05:48] Merged 1776 bytes (1.73 KiB) for 'symbol_global'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'type_contains_signature'.
+[2024-05-17 12:05:48] Merged 3008 bytes (2.94 KiB) for 'type_contains_signature'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'signature_types'.
+[2024-05-17 12:05:48] Merged 4340 bytes (4.24 KiB) for 'signature_types'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'signature_contains_type'.
+[2024-05-17 12:05:48] Merged 6132 bytes (5.99 KiB) for 'signature_contains_type'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'signature_parameter_name'.
+[2024-05-17 12:05:48] Merged 3720 bytes (3.63 KiB) for 'signature_parameter_name'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'signature_rest_parameter'.
+[2024-05-17 12:05:48] Merged 48 bytes for 'signature_rest_parameter'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'number_index_type'.
+[2024-05-17 12:05:48] Merged 1712 bytes (1.67 KiB) for 'number_index_type'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'string_index_type'.
+[2024-05-17 12:05:48] Merged 40 bytes for 'string_index_type'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'base_type_names'.
+[2024-05-17 12:05:48] Merged 728 bytes for 'base_type_names'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'self_types'.
+[2024-05-17 12:05:48] Merged 752 bytes for 'self_types'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'is_externs'.
+[2024-05-17 12:05:48] Merged 440 bytes for 'is_externs'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'jsdoc_record_field_name'.
+[2024-05-17 12:05:48] Merged 5964 bytes (5.82 KiB) for 'jsdoc_record_field_name'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'jsdoc_has_new_parameter'.
+[2024-05-17 12:05:48] Merged 28 bytes for 'jsdoc_has_new_parameter'.
+[2024-05-17 12:05:48] Merging 1 fragment for 'sourceLocationPrefix'.
+[2024-05-17 12:05:48] Merged 4 bytes for 'sourceLocationPrefix'.
+[2024-05-17 12:05:48] Saving string and id pools to disk.
+[2024-05-17 12:05:48] Finished importing TRAP files.
+[2024-05-17 12:05:48] Read 101.35 MiB of uncompressed TRAP data.
+[2024-05-17 12:05:48] Relation data size: 29.65 MiB (merge rate: 41.27 MiB/s)
+[2024-05-17 12:05:48] String pool size: 5.53 MiB
+[2024-05-17 12:05:48] ID pool size: 35.00 MiB
+[2024-05-17 12:05:48] [PROGRESS] dataset import> Finished writing database (relations: 29.65 MiB; string pool: 5.53 MiB).
+[2024-05-17 12:05:48] Pausing evaluation to close the cache at sequence stamp o+3
+[2024-05-17 12:05:48] The disk cache is freshly trimmed; leave it be.
+[2024-05-17 12:05:48] Unpausing evaluation
+[2024-05-17 12:05:48] Plumbing command codeql dataset import completed.
+[2024-05-17 12:05:48] [PROGRESS] database finalize> TRAP import complete (9.2s).
+[2024-05-17 12:05:48] Running plumbing command: codeql database cleanup --mode=trim -- /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db
+[2024-05-17 12:05:48] [PROGRESS] database cleanup> Cleaning up existing TRAP files after import...
+[2024-05-17 12:05:48] [PROGRESS] database cleanup> TRAP files cleaned up (18ms).
+[2024-05-17 12:05:48] [PROGRESS] database cleanup> Cleaning up scratch directory...
+[2024-05-17 12:05:48] [PROGRESS] database cleanup> Scratch directory cleaned up (0ms).
+[2024-05-17 12:05:48] Running plumbing command: codeql dataset cleanup --mode=trim -- /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db/db-javascript
+[2024-05-17 12:05:48] [PROGRESS] dataset cleanup> Cleaning up dataset in /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db/db-javascript.
+[2024-05-17 12:05:48] Trimming disk cache at /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db/db-javascript/default/cache in mode trim.
+[2024-05-17 12:05:48] Sequence stamp origin is -6183978314319853995
+[2024-05-17 12:05:48] Pausing evaluation to quickly trim memory at sequence stamp o+0
+[2024-05-17 12:05:48] Unpausing evaluation
+[2024-05-17 12:05:48] Pausing evaluation to zealously trim disk at sequence stamp o+1
+[2024-05-17 12:05:48] Unpausing evaluation
+[2024-05-17 12:05:48] Trimming completed (5ms): Trimmed disposable data from cache.
+[2024-05-17 12:05:48] Pausing evaluation to close the cache at sequence stamp o+2
+[2024-05-17 12:05:48] The disk cache is freshly trimmed; leave it be.
+[2024-05-17 12:05:48] Unpausing evaluation
+[2024-05-17 12:05:48] [PROGRESS] dataset cleanup> Trimmed disposable data from cache.
+[2024-05-17 12:05:48] [PROGRESS] dataset cleanup> Finalizing dataset in /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db/db-javascript
+[2024-05-17 12:05:48] [DETAILS] dataset cleanup> Finished deleting ID pool from /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db/db-javascript (7ms).
+[2024-05-17 12:05:48] Plumbing command codeql dataset cleanup completed.
+[2024-05-17 12:05:48] Plumbing command codeql database cleanup completed with status 0.
+[2024-05-17 12:05:48] [PROGRESS] database finalize> Finished zipping source archive (521.62 KiB).
+[2024-05-17 12:05:48] Plumbing command codeql database finalize completed.
+[2024-05-17 12:05:48] [PROGRESS] database create> Successfully created database at /home/vbuntu/SSR-XSS-Security/remix-test/codeql-db.
+[2024-05-17 12:05:48] Terminating normally.

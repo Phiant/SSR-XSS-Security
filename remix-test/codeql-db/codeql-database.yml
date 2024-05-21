@@ -1,0 +1,10 @@
+---
+sourceLocationPrefix: /home/vbuntu/SSR-XSS-Security/remix-test
+baselineLinesOfCode: 980
+unicodeNewlines: true
+columnKind: utf16
+primaryLanguage: javascript
+creationMetadata:
+  cliVersion: 2.16.5
+  creationTime: 2024-05-17T10:05:11.906460350Z
+finalised: true
